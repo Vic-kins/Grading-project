@@ -1,1 +1,99 @@
 #include <stdio.h>
+
+int main (){
+
+   printf("Enter the marks acquired:\n"); 
+    
+    double math_marks;
+    double kiswahili_marks;
+    double english_marks;
+    double science_marks;
+    double socialstudies_marks;
+
+// do- while loop implemented where when wrong input is entered, 
+// the program line rejects input and runs the program line again
+
+// The Math line program
+    printf("Maths :\n");
+    
+   do {
+   
+   scanf("%lf",&math_marks);
+ 
+    if (math_marks > 100){
+
+      printf("Invalid marks entered!");
+
+   }
+}while (math_marks > 100);
+
+// The Kiswahili line program
+
+printf("Kiswahili :\n");
+    
+do {
+
+scanf("%lf",&kiswahili_marks);
+
+ if (kiswahili_marks > 100){
+
+   printf("Invalid marks entered!");
+ }
+
+}while (kiswahili_marks > 100);
+
+// The english line program
+
+printf("English :\n");
+    
+do {
+
+scanf("%lf",&english_marks);
+
+ if (english_marks > 100){
+
+   printf("Invalid marks entered!");
+
+}
+}while (english_marks > 100);
+
+// The science line program
+
+printf("Science:\n");
+    
+do {
+
+scanf("%lf",&science_marks);
+
+ if (science_marks > 100){
+
+   printf("Invalid marks entered!");
+
+}
+}while (science_marks > 100);
+
+// The Social studies line program
+
+printf("Social studies :\n");
+    
+do {
+
+scanf("%lf",&socialstudies_marks);
+
+ if (socialstudies_marks > 100){
+
+   printf("Invalid marks entered!");
+
+}
+}while (socialstudies_marks > 100);
+ 
+// All inputs are printed out
+
+ printf("You're marks are:\n Math = %.2lf\n Kiswahili = %.2lf\n English = %.2lf\n Science = %.2lf\n Social studies = %.2lf\n",
+    math_marks,kiswahili_marks,english_marks,science_marks,socialstudies_marks);
+ 
+
+return 0;
+
+
+}
