@@ -24,6 +24,9 @@ int main() {
     // Call the function for each subject
     calculateGrade("English", English);
     calculateGrade("Math", Math);
+    calculateGrade("Kiswahili", Kiswahili);
+    calculateGrade("Science", Science);
+    calculateGrade("Social Studies", SocialStudies);
 
     return 0;
 }
