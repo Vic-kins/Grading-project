@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-// Stylish student grading system by Project-Cyclon ✨
+// Stylish student grading system by Eng. Caleb ✨
 
 #define MAX_STUDENTS 100
 
@@ -109,16 +109,16 @@ int main() {
         system("cls || clear");
         printf("\n\n");
         printf("  ╔════════════════════════════════════════════════════════════════════════╗\n");
-        printf("  ║                🎓 STUDENT GRADING SYSTEM MENU 🎓                      ║\n");
-        printf("  ║          Created with ❤️ by Eng. Caleb | Project-Cyclon               ║\n");
+        printf("  ║                🎓 STUDENT GRADING SYSTEM MENU 🎓                    ║\n");
+        printf("  ║          Created with ❤️ by Eng. Caleb | Kally-Synex Tech         ║\n");
         printf("  ╚════════════════════════════════════════════════════════════════════════╝\n");
 
-        printf("\n  [1]  Insert Student Record");
-        printf("\n  [2] View Student Record");
-        printf("\n  [3]  Help");
-        printf("\n  [4]  About Developer");
-        printf("\n  [5]  Student Login");
-        printf("\n  [0]  Exit");
+        printf("\n  [1] ➕ Insert Student Record");
+        printf("\n  [2] 📄 View Student Record");
+        printf("\n  [3] ❓ Help");
+        printf("\n  [4] 👨‍💻 About Developer");
+        printf("\n  [5] 🔑 Student Login");
+        printf("\n  [0] ❌ Exit");
 
         printf("\n\n  🔽 Select an option: ");
         choice = getchar();
@@ -141,10 +141,10 @@ int main() {
                 studentMenu();
                 break;
             case '0':
-                printf("\n Thank you for using the system! Goodbye.\n");
+                printf("\n👋 Thank you for using the system! Goodbye.\n");
                 exit(0);
             default:
-                printf("\n Invalid option. Try again.\n");
+                printf("\n⚠️  Invalid option. Try again.\n");
         }
 
         printf("\n🔁 Press Enter to continue...");
