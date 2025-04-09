@@ -1,118 +1,154 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "student.h"
-#include "admin.h"
 
-#define MAX_NAME_LEN 50
-#define MAX_ID_LEN 10
+// Stylish student grading system by Project-Cyclon ✨
 
-// Function prototypes
-void displayMenu();
-int loginAsStudent();
-int loginAsAdmin();
+#define MAX_STUDENTS 100
+
+typedef struct {
+    char name[50];
+    int maths, english, kiswahili, science, social;
+    int total;
+    float average;
+    char grade;
+} Student;
+
+// Array to hold student records
+Student students[MAX_STUDENTS];
+int studentCount = 0;
+
+void calculateGrade(Student *s) {
+    s->total = s->maths + s->english + s->kiswahili + s->science + s->social;
+    s->average = s->total / 5.0f;
+
+    if (s->average >= 80) s->grade = 'A';
+    else if (s->average >= 70) s->grade = 'B';
+    else if (s->average >= 60) s->grade = 'C';
+    else if (s->average >= 50) s->grade = 'D';
+    else s->grade = 'F';
+}
+
+void insertStudent(Student *s) {
+    printf("\n📝 Enter student name: ");
+    fgets(s->name, sizeof(s->name), stdin);
+    s->name[strcspn(s->name, "\n")] = '\0';
+
+    printf("🔢 Enter Maths marks: ");
+    scanf("%d", &s->maths);
+    printf("🔤 Enter English marks: ");
+    scanf("%d", &s->english);
+    printf("🗣️ Enter Kiswahili marks: ");
+    scanf("%d", &s->kiswahili);
+    printf("🔬 Enter Science marks: ");
+    scanf("%d", &s->science);
+    printf("🌍 Enter Social Studies marks: ");
+    scanf("%d", &s->social);
+    getchar(); // clear input buffer
+
+    calculateGrade(s);
+    students[studentCount++] = *s;  // Store the student record
+    printf("\n✅ Student record added successfully!\n");
+}
+
+int studentLogin(char *name) {
+    for (int i = 0; i < studentCount; i++) {
+        if (strcmp(students[i].name, name) == 0) {
+            return i;  // Found student, return index
+        }
+    }
+    return -1;  // Student not found
+}
+
+void viewStudent(int index) {
+    Student *s = &students[index];
+    printf("\n📊 STUDENT RESULTS TABLE\n");
+    printf("====================================================================================\n");
+    printf("| %-20s | 📘 MTH | 📗 ENG | 📕 KIS | 🔬 SCI | 🌍 SST | 🔢 TOT | AVG 📈 | GRD 🏅 |\n", "Name");
+    printf("====================================================================================\n");
+    printf("| %-20s | %6d | %6d | %6d | %6d | %6d | %6d | %7.1f |    %c   |\n",
+           s->name, s->maths, s->english, s->kiswahili, s->science, s->social,
+           s->total, s->average, s->grade);
+    printf("====================================================================================\n");
+}
+
+void showCredits() {
+    printf("\n✨ Developed by Eng. Caleb - Kally-Synex Tech Innovations ✨\n");
+}
+
+void helpMenu() {
+    printf("\n📘 Help Section\n");
+    printf("- [1] Insert Student Record: Add a new student and their marks.\n");
+    printf("- [2] View Student Record: Display entered marks, average, and grade.\n");
+    printf("- [3] Help: Show this help menu.\n");
+    printf("- [4] About: Show developer information.\n");
+    printf("- [0] Exit: Quit the program.\n");
+}
+
+void studentMenu() {
+    char studentName[50];
+    printf("\n🔑 Student Login\n");
+    printf("Enter your name: ");
+    fgets(studentName, sizeof(studentName), stdin);
+    studentName[strcspn(studentName, "\n")] = '\0';  // Remove newline character
+
+    int studentIndex = studentLogin(studentName);
+    if (studentIndex != -1) {
+        printf("\nWelcome, %s!\n", studentName);
+        viewStudent(studentIndex);  // Show student's marks
+    } else {
+        printf("\n⚠️  No record found for the student with the name '%s'.\n", studentName);
+    }
+}
 
 int main() {
-    int choice, id;
+    Student s;
+    char choice;
 
     while (1) {
-        displayMenu();
-        printf("Enter your choice: ");
-        scanf("%d", &choice);
-        getchar(); // Consume newline
+        system("cls || clear");
+        printf("\n\n");
+        printf("  ╔════════════════════════════════════════════════════════════════════════╗\n");
+        printf("  ║                🎓 STUDENT GRADING SYSTEM MENU 🎓                      ║\n");
+        printf("  ║          Created with ❤️ by Eng. Caleb | Project-Cyclon               ║\n");
+        printf("  ╚════════════════════════════════════════════════════════════════════════╝\n");
+
+        printf("\n  [1]  Insert Student Record");
+        printf("\n  [2] View Student Record");
+        printf("\n  [3]  Help");
+        printf("\n  [4]  About Developer");
+        printf("\n  [5]  Student Login");
+        printf("\n  [0]  Exit");
+
+        printf("\n\n  🔽 Select an option: ");
+        choice = getchar();
+        getchar(); // Clear newline
 
         switch (choice) {
-            case 1:
-                id = loginAsStudent();
-                if (id != -1) {
-                    studentMenu(id);
-                }
+            case '1':
+                insertStudent(&s);
                 break;
-            case 2:
-                id = loginAsAdmin();
-                if (id != -1) {
-                    adminMenu();
-                }
+            case '2':
+                viewStudent(0);  // Just an example
                 break;
-            case 3:
-                printf("Exiting system...\n");
+            case '3':
+                helpMenu();
+                break;
+            case '4':
+                showCredits();
+                break;
+            case '5':
+                studentMenu();
+                break;
+            case '0':
+                printf("\n Thank you for using the system! Goodbye.\n");
                 exit(0);
             default:
-                printf("Invalid choice! Try again.\n");
+                printf("\n Invalid option. Try again.\n");
         }
+
+        printf("\n🔁 Press Enter to continue...");
+        getchar();
     }
     return 0;
 }
-
-// Display main menu
-void displayMenu() {
-    printf("\n====================\n");
-    printf(" SCHOOL GRADING SYSTEM \n");
-    printf("====================\n");
-    printf("1. Login as Student\n");
-    printf("2. Login as Admin\n");
-    printf("3. Exit\n");
-}
-
-// Student login function
-int loginAsStudent() {
-    char enteredID[MAX_ID_LEN];
-    char line[100];
-    FILE *file = fopen("data/students.csv", "r");
-
-    if (!file) {
-        printf("Error opening student database!\n");
-        return -1;
-    }
-
-    printf("Enter your Admission Number: ");
-    scanf("%s", enteredID);
-
-    while (fgets(line, sizeof(line), file)) {
-        char id[MAX_ID_LEN], name[MAX_NAME_LEN];
-        int sID;
-        sscanf(line, "%d,%49[^,],%9s", &sID, name, id);
-
-        if (strcmp(enteredID, id) == 0) {
-            fclose(file);
-            printf("Welcome, %s!\n", name);
-            return sID; // Return student ID
-        }
-    }
-
-    fclose(file);
-    printf("Invalid Admission Number!\n");
-    return -1;
-}
-
-// Admin login function
-int loginAsAdmin() {
-    char enteredID[MAX_ID_LEN];
-    char line[100];
-    FILE *file = fopen("data/admins.csv", "r");
-
-    if (!file) {
-        printf("Error opening admin database!\n");
-        return -1;
-    }
-
-    printf("Enter your Admin ID: ");
-    scanf("%s", enteredID);
-
-    while (fgets(line, sizeof(line), file)) {
-        char id[MAX_ID_LEN], name[MAX_NAME_LEN];
-        int aID;
-        sscanf(line, "%d,%49[^,],%9s", &aID, name, id);
-
-        if (strcmp(enteredID, id) == 0) {
-            fclose(file);
-            printf("Welcome, %s!\n", name);
-            return aID; // Return admin ID
-        }
-    }
-
-    fclose(file);
-    printf("Invalid Admin ID!\n");
-    return -1;
-}
-
