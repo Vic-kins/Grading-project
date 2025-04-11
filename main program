@@ -2,8 +2,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-// Stylish student grading system by Eng. Caleb ✨
-
 #define MAX_STUDENTS 100
 
 typedef struct {
@@ -30,25 +28,25 @@ void calculateGrade(Student *s) {
 }
 
 void insertStudent(Student *s) {
-    printf("\n📝 Enter student name: ");
+    printf("\n Enter student name: ");
     fgets(s->name, sizeof(s->name), stdin);
     s->name[strcspn(s->name, "\n")] = '\0';
 
-    printf("🔢 Enter Maths marks: ");
+    printf(" Enter Maths marks: ");
     scanf("%d", &s->maths);
-    printf("🔤 Enter English marks: ");
+    printf(" Enter English marks: ");
     scanf("%d", &s->english);
-    printf("🗣️ Enter Kiswahili marks: ");
+    printf(" Enter Kiswahili marks: ");
     scanf("%d", &s->kiswahili);
-    printf("🔬 Enter Science marks: ");
+    printf(" Enter Science marks: ");
     scanf("%d", &s->science);
-    printf("🌍 Enter Social Studies marks: ");
+    printf(" Enter Social Studies marks: ");
     scanf("%d", &s->social);
     getchar(); // clear input buffer
 
     calculateGrade(s);
     students[studentCount++] = *s;  // Store the student record
-    printf("\n✅ Student record added successfully!\n");
+    printf("\n Student record added successfully!\n");
 }
 
 int studentLogin(char *name) {
@@ -62,9 +60,9 @@ int studentLogin(char *name) {
 
 void viewStudent(int index) {
     Student *s = &students[index];
-    printf("\n📊 STUDENT RESULTS TABLE\n");
+    printf("\n STUDENT RESULTS TABLE\n");
     printf("====================================================================================\n");
-    printf("| %-20s | 📘 MTH | 📗 ENG | 📕 KIS | 🔬 SCI | 🌍 SST | 🔢 TOT | AVG 📈 | GRD 🏅 |\n", "Name");
+    printf("| %-20s |  MTH |   ENG |   KIS |   SCI |  SST |   TOT | AVG  | GRD  |\n", "Name");
     printf("====================================================================================\n");
     printf("| %-20s | %6d | %6d | %6d | %6d | %6d | %6d | %7.1f |    %c   |\n",
            s->name, s->maths, s->english, s->kiswahili, s->science, s->social,
@@ -73,11 +71,11 @@ void viewStudent(int index) {
 }
 
 void showCredits() {
-    printf("\n✨ Developed by Eng. Caleb - Kally-Synex Tech Innovations ✨\n");
+    printf("\n Developed by Project Cyclon group\n");
 }
 
 void helpMenu() {
-    printf("\n📘 Help Section\n");
+    printf("\n  Help Section\n");
     printf("- [1] Insert Student Record: Add a new student and their marks.\n");
     printf("- [2] View Student Record: Display entered marks, average, and grade.\n");
     printf("- [3] Help: Show this help menu.\n");
@@ -109,8 +107,8 @@ int main() {
         system("cls || clear");
         printf("\n\n");
         printf("  ╔════════════════════════════════════════════════════════════════════════╗\n");
-        printf("  ║                🎓 STUDENT GRADING SYSTEM MENU 🎓                    ║\n");
-        printf("  ║          Created with ❤️ by Eng. Caleb | Kally-Synex Tech         ║\n");
+        printf("  ║                   STUDENT GRADING SYSTEM MENU                     ║\n");
+        printf("  ║                  Created by project Cyclon Group        ║\n");
         printf("  ╚════════════════════════════════════════════════════════════════════════╝\n");
 
         printf("\n  [1] ➕ Insert Student Record");
