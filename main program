@@ -85,7 +85,7 @@ void helpMenu() {
 
 void studentMenu() {
     char studentName[50];
-    printf("\n🔑 Student Login\n");
+    printf("\n Student Login\n");
     printf("Enter your name: ");
     fgets(studentName, sizeof(studentName), stdin);
     studentName[strcspn(studentName, "\n")] = '\0';  // Remove newline character
@@ -95,7 +95,7 @@ void studentMenu() {
         printf("\nWelcome, %s!\n", studentName);
         viewStudent(studentIndex);  // Show student's marks
     } else {
-        printf("\n⚠️  No record found for the student with the name '%s'.\n", studentName);
+        printf("\n No record found for the student with the name '%s'.\n", studentName);
     }
 }
 
@@ -111,14 +111,14 @@ int main() {
         printf("  ║                  Created by project Cyclon Group        ║\n");
         printf("  ╚════════════════════════════════════════════════════════════════════════╝\n");
 
-        printf("\n  [1] ➕ Insert Student Record");
-        printf("\n  [2] 📄 View Student Record");
-        printf("\n  [3] ❓ Help");
-        printf("\n  [4] 👨‍💻 About Developer");
-        printf("\n  [5] 🔑 Student Login");
-        printf("\n  [0] ❌ Exit");
+        printf("\n  [1]  Insert Student Record");
+        printf("\n  [2]  View Student Record");
+        printf("\n  [3]  Help");
+        printf("\n  [4]  About Developer");
+        printf("\n  [5]  Student Login");
+        printf("\n  [0]  Exit");
 
-        printf("\n\n  🔽 Select an option: ");
+        printf("\n\n Select an option: ");
         choice = getchar();
         getchar(); // Clear newline
 
@@ -139,13 +139,13 @@ int main() {
                 studentMenu();
                 break;
             case '0':
-                printf("\n👋 Thank you for using the system! Goodbye.\n");
+                printf("\n Thank you for using the system! Goodbye.\n");
                 exit(0);
             default:
-                printf("\n⚠️  Invalid option. Try again.\n");
+                printf("\n Invalid option. Try again.\n");
         }
 
-        printf("\n🔁 Press Enter to continue...");
+        printf("\n Press Enter to continue...");
         getchar();
     }
     return 0;
