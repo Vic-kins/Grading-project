@@ -107,8 +107,8 @@ int main() {
         system("cls || clear");
         printf("\n\n");
         printf("  ╔════════════════════════════════════════════════════════════════════════╗\n");
-        printf("  ║                   STUDENT GRADING SYSTEM MENU                     ║\n");
-        printf("  ║                  Created by project Cyclon Group        ║\n");
+        printf("  ║                   STUDENT GRADING SYSTEM MENU                          ║\n");
+        printf("  ║                  Created by project Cyclon Group                       ║\n");
         printf("  ╚════════════════════════════════════════════════════════════════════════╝\n");
 
         printf("\n  [1]  Insert Student Record");
